@@ -12,7 +12,6 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <p>hola</p>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/studentlist">Student List</RouterLink>
         <!-- Elimina el siguiente enlace ya que no tienes un id específico aquí -->
         <!-- <RouterLink to="/students/:id">Student Detail</RouterLink> -->

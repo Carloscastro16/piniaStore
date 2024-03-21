@@ -1,15 +1,16 @@
 <script lang="ts" setup>
-import type { IStudent } from '@/interfaces/IStudent';
+import type { IStudent } from '@/interfaces/IStudent'
 import { useStudentsStore } from '@/stores/StudentsData'
-import { onMounted, ref, Ref } from 'vue';
+import { onMounted, ref, type Ref } from 'vue'
 
 const studentsStore = useStudentsStore()
 
 const deleteStudent = (id: number) => {
   studentsStore.DeleteStudent(id)
+  /* window.location.reload(); */
 }
 
-let studentsData: Ref<IStudent[] | null> = ref([
+let studentsData: Ref<IStudent[]> = ref([
   {
     id: 0,
     name: 'Carlos',
@@ -20,9 +21,9 @@ let studentsData: Ref<IStudent[] | null> = ref([
 
 onMounted(async () => {
   await studentsStore.GetStudents()
-  console.log('Estudiantes', studentsStore.students);
-  let students = await studentsStore.students;
-  studentsData.value = students;
+  console.log('Estudiantes', studentsStore.students)
+  let students = await studentsStore.students
+  studentsData.value = students
 })
 </script>
 
@@ -34,7 +35,7 @@ onMounted(async () => {
         <RouterLink :to="{ name: 'StudentDetails', params: { id: student.id } }">{{
           student.name
         }}</RouterLink>
-        <button @click="deleteStudent(student.id)">Delete</button>
+        <button @click="deleteStudent(student.id!)">Delete</button>
       </li>
     </ul>
 
@@ -42,9 +43,21 @@ onMounted(async () => {
   </div>
 </template>
 <style scoped lang="scss">
-.students-container{
-  .ul{
-    list-style: none;
+.students-container {
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    li {
+      list-style: none;
+      padding: 0.5rem 0.6rem;
+      background-color: rgba(235, 235, 235, 0.154);
+      border-radius: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
 </style>

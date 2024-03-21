@@ -19,15 +19,33 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="student">
+  <div v-if="student" class="student-card">
     <h2>Details for {{ student.name }}</h2>
-    <p><strong>ID:</strong> {{ student.id }}</p>
-    <p><strong>Name:</strong> {{ student.name }}</p>
-    <p><strong>Email:</strong> {{ student.email }}</p>
-    <p><strong>Group:</strong> {{ student.group }}</p>
+    <div class="content">
+      <p>ID: {{ student.id }}</p>
+      <p>Name: {{ student.name }}</p>
+      <p>Email: {{ student.email }}</p>
+      <p>1Group: {{ student.group }}</p>
+    </div>
     <RouterLink to="/studentlist">Back to List</RouterLink>
   </div>
   <div v-else>
     <p>Student not found. Return to <RouterLink to="/studentlist">Student List</RouterLink>.</p>
   </div>
 </template>
+
+<style scoped lang="scss">
+.student-card {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 0.8rem;
+  h2 {
+    padding-bottom: 1rem;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+</style>
