@@ -10,7 +10,6 @@ import { RouterLink, RouterView } from 'vue-router'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <p>hola</p>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/studentlist">Student List</RouterLink>
         <!-- Elimina el siguiente enlace ya que no tienes un id específico aquí -->
@@ -51,7 +50,6 @@ nav a.router-link-exact-active:hover {
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
 }
 
 nav a:first-of-type {

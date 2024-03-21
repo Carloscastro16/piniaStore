@@ -5,19 +5,14 @@ import { onMounted, ref, type Ref } from 'vue'
 
 const studentsStore = useStudentsStore()
 
-const deleteStudent = (id: number) => {
+const deleteStudent = async (id: number) => {
   studentsStore.DeleteStudent(id)
+  alert('Estudiante Eliminado')
+  studentsData.value = await studentsStore.students
   /* window.location.reload(); */
 }
 
-let studentsData: Ref<IStudent[]> = ref([
-  {
-    id: 0,
-    name: 'Carlos',
-    email: 'carlos@gmail.com',
-    group: 'IDYGS82'
-  }
-])
+let studentsData: Ref<IStudent[]> = ref([])
 
 onMounted(async () => {
   await studentsStore.GetStudents()
@@ -38,8 +33,9 @@ onMounted(async () => {
         <button @click="deleteStudent(student.id!)">Delete</button>
       </li>
     </ul>
-
-    <RouterLink to="/add">Add New Student</RouterLink>
+    <div class="btn-add">
+      <RouterLink to="/add">Add more</RouterLink>
+    </div>
   </div>
 </template>
 <style scoped lang="scss">
@@ -57,6 +53,17 @@ onMounted(async () => {
       border-radius: 0.5rem;
       display: flex;
       justify-content: space-between;
+    }
+  }
+  .btn-add {
+    margin-top: 1.2rem;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    background: #41B883;
+    color: #fff;
+    width: fit-content;
+    a {
+      color: #fff;
     }
   }
 }
