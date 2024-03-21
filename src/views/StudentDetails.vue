@@ -2,13 +2,13 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStudentsStore } from '@/stores/StudentsData'
-import type { IStudent } from '@/stores/StudentsData' // Importa la interfaz IStudent
+import type { IStudent } from '@/interfaces/IStudent';
 
 const route = useRoute()
 const studentsStore = useStudentsStore()
 
 const studentId = parseInt(route.params.id as string, 10)
-const student = ref<IStudent | null>(null)
+const student = ref<IStudent | null>()
 
 onMounted(async () => {
   if (!isNaN(studentId)) {

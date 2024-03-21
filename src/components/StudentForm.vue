@@ -22,7 +22,8 @@
 import { ref, type Ref } from 'vue'
 import { useStudentsStore } from '@/stores/StudentsData'
 import type { IStudent } from '@/interfaces/IStudent'
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const studentsStore = useStudentsStore()
 const student: Ref<IStudent> = ref({
   id: 0,
@@ -34,6 +35,7 @@ const student: Ref<IStudent> = ref({
 const submitForm = () => {
   studentsStore.CreateStudent(student.value)
   student.value = { id: 0, name: '', email: '', group: '' }
+  router.push({ name: 'StudentList' });
 }
 </script>
 

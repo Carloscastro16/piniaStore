@@ -8,15 +8,14 @@ const studentsStore = useStudentsStore()
 const deleteStudent = async (id: number) => {
   studentsStore.DeleteStudent(id)
   alert('Estudiante Eliminado')
-  studentsData.value = await studentsStore.students
-  /* window.location.reload(); */
+  await studentsStore.GetStudents();
+  studentsData.value = await studentsStore.students;
 }
 
 let studentsData: Ref<IStudent[]> = ref([])
 
 onMounted(async () => {
   await studentsStore.GetStudents()
-  console.log('Estudiantes', studentsStore.students)
   let students = await studentsStore.students
   studentsData.value = students
 })

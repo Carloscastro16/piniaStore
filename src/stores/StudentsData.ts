@@ -1,18 +1,16 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import StudentService from '@/services/StudentService'
-
-export interface IStudent {
-  id?: number
-  name: string
-  email: string
-  group: string
-}
+import type { IStudent } from '@/interfaces/IStudent'
 
 export const useStudentsStore = defineStore('students', () => {
   // state
-  const students = ref<IStudent[]>([])
-  const student = ref<IStudent | null>(null)
+  const students: Ref<IStudent[]> = ref([])
+  const student: Ref<IStudent> = ref({
+    name: '',
+    email: '',
+    group: ''
+  })
   const service = new StudentService()
 
   // actions
